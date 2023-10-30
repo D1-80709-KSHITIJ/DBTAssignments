@@ -1,0 +1,29 @@
+
+******************************************************************* SQL ASSIGNMENT-10 *****************************************************************
+
+
+1)
+D1_TARUNK_80767>select a.sname, b.sname from SALESPERSON b, SALESPERSON a where a.city=b.city and a.sname != b.sname and a.snum>b.snum;
++--------+-------+
+| sname  | sname |
++--------+-------+
+| Motika | Peel  |
++--------+-------+
+1 row in set (0.00 sec)
+
+
+2)
+D1_TARUNK_80767>SELECT CNAME, CITY FROM CUSTOMERS WHERE RATING=(SELECT RATING FROM CUSTOMERS WHERE CNAME='Hoffman');
++---------+--------+
+| CNAME   | CITY   |
++---------+--------+
+| Hoffman | London |
+| Clemens | London |
+| Pereira | Rome   |
++---------+--------+
+3 rows in set (0.00 sec)
+
+
+
+
+**************************************************************** END OF SQL ASSIGNMENT-10 *************************************************************

@@ -1,0 +1,18 @@
+SQL Assignement-2
+-----------------
+
+
+1) primary key of Customer table: Cnum
+
+2) 4th column of Customer table: Rating
+
+3) Another word for row: 
+	(In DBMS) - records
+	(In MySQL)- tuple/entity
+   Another word for column:
+	(In DBMS) - fields
+	(In MySQL)- attribute
+
+4) It is not possible to view the first 5 rows of the table because whenever we insert a row into the table, it is not stored in the sequentially. Wherever MySQL finds the free space, it will store the row there. And now whenever we perform SELECT operation from table the order of the output will depends upon the row address, which is always going to be in ascending order.
+Therefore, it is not possible to view the first 5 rows of the table.
+

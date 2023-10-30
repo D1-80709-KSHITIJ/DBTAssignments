@@ -1,0 +1,91 @@
+Assignment 14:-
+
+Q1:-
+
+D1_80735_NikhilP>create table SALESPEOPLE2 as select City,Sname,Comm,Cnum from SALESPEOPLE;
+Query OK, 5 rows affected, 1 warning (0.08 sec)
+Records: 5  Duplicates: 0  Warnings: 1
+
+D1_80735_NikhilP>drop table SALESPEOPLE;
+Query OK, 0 rows affected (0.02 sec)
+
+D1_80735_NikhilP>select * from SALESPEOPLE2;
++-----------+---------+------+------+
+| City      | Sname   | Comm | Cnum |
++-----------+---------+------+------+
+| London    | Peel    | 0.12 | NULL |
+| San Jose  | Serres  | 0.13 | NULL |
+| London    | Motika  | 0.11 | NULL |
+| Barcelona | Rifkin  | 0.15 | NULL |
+| New York  | Axelrod | 0.10 | NULL |
++-----------+---------+------+------+
+5 rows in set (0.00 sec)
+
+D1_80735_NikhilP>rename table SALESPEOPLE2 to SALESPEOPLE;
+Query OK, 0 rows affected (0.02 sec)
+
+D1_80735_NikhilP>insert into SALESPEOPLE values ('San Jose','Blanco',null,1100);
+Query OK, 1 row affected (0.01 sec)
+
+D1_80735_NikhilP>select * from SALESPEOPLE;
++-----------+---------+------+------+
+| City      | Sname   | Comm | Cnum |
++-----------+---------+------+------+
+| London    | Peel    | 0.12 | NULL |
+| San Jose  | Serres  | 0.13 | NULL |
+| London    | Motika  | 0.11 | NULL |
+| Barcelona | Rifkin  | 0.15 | NULL |
+| New York  | Axelrod | 0.10 | NULL |
+| San Jose  | Blanco  | NULL | 1100 |
++-----------+---------+------+------+
+6 rows in set (0.00 sec)
+
+Q2:-
+
+D1_80735_NikhilP>delete from ORDERS where Cnum = (select Cnum from CUSTOMERS where Cname='Clemens');
+Query OK, 2 rows affected (0.00 sec)
+
+D1_80735_NikhilP>select * from ORDERS where Cnum = (select Cnum from CUSTOMERS where Cname='Clemens');
+Empty set (0.00 sec)
+
+Q3:-
+
+D1_80735_NikhilP>update CUSTOMERS set Rating =Rating+100 where City = 'Rome';
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+D1_80735_NikhilP>select * from CUSTOMERS;
++------+----------+----------+--------+------+
+| Cnum | Cname    | City     | Rating | Snum |
++------+----------+----------+--------+------+
+| 2001 | Hoffman  | London   |    100 | 1001 |
+| 2001 | Giovanni | Rome     |    300 | 1003 |
+| 2003 | Liu      | San Jose |    200 | 1002 |
+| 2004 | Grass    | Berlin   |    300 | 1002 |
+| 2006 | Clemens  | London   |    300 | 1001 |
+| 2008 | Cisneros | San Jose |    300 | 1007 |
+| 2007 | Pereira  | Rome     |    200 | 1004 |
++------+----------+----------+--------+------+
+7 rows in set (0.00 sec)
+
+Q4:-
+
+D1_80735_NikhilP>update CUSTOMERS set Snum = (select Snum from SALESPEOPLE where Sname = 'Motika') where Snum = (select Snum from SALESPEOPLE where Sname = 'Serres');
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+D1_80735_NikhilP>select * from CUSTOMERS;
++------+----------+----------+--------+------+
+| Cnum | Cname    | City     | Rating | Snum |
++------+----------+----------+--------+------+
+| 2001 | Hoffman  | London   |    100 | 1001 |
+| 2001 | Giovanni | Rome     |    300 | 1003 |
+| 2003 | Liu      | San Jose |    200 | 1004 |
+| 2004 | Grass    | Berlin   |    300 | 1004 |
+| 2006 | Clemens  | London   |    300 | 1001 |
+| 2008 | Cisneros | San Jose |    300 | 1007 |
+| 2007 | Pereira  | Rome     |    200 | 1004 |
++------+----------+----------+--------+------+
+7 rows in set (0.01 sec)
+
+

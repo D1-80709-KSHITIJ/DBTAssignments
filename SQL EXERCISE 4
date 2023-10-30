@@ -1,0 +1,149 @@
+
+
+******************************************************************* SQL EXCERCISE 4 *******************************************************************
+
+
+1)
+D1_TARUNK_80767>SELECT MIN(STATUS) FROM SUPPLIER;
++-------------+
+| MIN(STATUS) |
++-------------+
+|          10 |
++-------------+
+1 row in set (0.00 sec)
+
+
+2)
+D1_TARUNK_80767>SELECT MAX(WEIGHT) FROM PARTS;
++-------------+
+| MAX(WEIGHT) |
++-------------+
+|          19 |
++-------------+
+1 row in set (0.00 sec)
+
+
+3)
+D1_TARUNK_80767>SELECT AVG(WEIGHT), PNAME FROM PARTS GROUP BY PNAME ORDER BY AVG(WEIGHT);
++-------------+-------+
+| AVG(WEIGHT) | PNAME |
++-------------+-------+
+|     12.0000 | Cam   |
+|     12.0000 | Nut   |
+|     15.5000 | Screw |
+|     17.0000 | Bolt  |
+|     19.0000 | Cog   |
++-------------+-------+
+5 rows in set (0.00 sec)
+
+
+4)
+D1_TARUNK_80767>SELECT COUNT(QTY) FROM SPJ WHERE `P#` ='P1';
++------------+
+| COUNT(QTY) |
++------------+
+|          3 |
++------------+
+1 row in set (0.01 sec)
+
+
+5)
+D1_TARUNK_80767>SELECT `P#`, COUNT(QTY) FROM SPJ GROUP BY `P#`;
++------+------------+
+| P#   | COUNT(QTY) |
++------+------------+
+| P1   |          3 |
+| P2   |          2 |
+| P3   |          9 |
+| P4   |          2 |
+| P5   |          4 |
+| P6   |          4 |
++------+------------+
+6 rows in set (0.00 sec)
+
+
+6)
+D1_TARUNK_80767>SELECT `P#`, AVG(QTY) FROM SPJ GROUP BY `P#`;
++------+----------+
+| P#   | AVG(QTY) |
++------+----------+
+| P1   | 333.3333 |
+| P2   | 150.0000 |
+| P3   | 388.8889 |
+| P4   | 650.0000 |
+| P5   | 275.0000 |
+| P6   | 325.0000 |
++------+----------+
+6 rows in set (0.00 sec)
+
+
+7)
+D1_TARUNK_80767>SELECT `P#`, MAX(QTY) FROM SPJ GROUP BY `P#` HAVING MAX(QTY)>=800;
++------+----------+
+| P#   | MAX(QTY) |
++------+----------+
+| P3   |      800 |
+| P4   |      800 |
++------+----------+
+2 rows in set (0.00 sec)
+
+
+
+8)
+D1_TARUNK_80767>select status, count(status) from SUPPLIER group by status;
++--------+---------------+
+| status | count(status) |
++--------+---------------+
+|     10 |             1 |
+|     20 |             2 |
+|     30 |             2 |
++--------+---------------+
+3 rows in set (0.00 sec)
+
+
+9)
+D1_TARUNK_80767>select City, count(*) No_of_Project from PROJECTS group by city;
++---------+---------------+
+| City    | No_of_Project |
++---------+---------------+
+| Athens  |             2 |
+| London  |             2 |
+| Mathura |             1 |
+| Oslo    |             1 |
+| Paris   |             1 |
+| Rome    |             1 |
++---------+---------------+
+6 rows in set (0.00 sec)
+
+
+
+10)
+D1_TARUNK_80767>select COUNT(*)-COUNT(STATUS) from SUPPLIER;
++------------------------+
+| COUNT(*)-COUNT(STATUS) |
++------------------------+
+|                      0 |
++------------------------+
+1 row in set (0.00 sec)
+
+
+
+11)
+D1_TARUNK_80767>select case when status=10 then 'TEN' when status=20 then 'TWENTY' when status = 30 then 'THIRTY' end "STATUS", count(*) COUNT from SUPPL
++--------+-------+
+| STATUS | COUNT |
++--------+-------+
+| TEN    |     1 |
+| TWENTY |     2 |
+| THIRTY |     2 |
++--------+-------+
+3 rows in set, 1 warning (0.00 sec)
+
+
+
+***************************************************************** END OF SQL Exercise 4 ************************************************************
+
+
+
+
+

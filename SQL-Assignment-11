@@ -1,0 +1,39 @@
+
+******************************************************************* SQL ASSIGNMENT-11 *****************************************************************
+
+
+1)
+D1_TARUNK_80767>select * from ORDERS where Cnum = (select Cnum from CUSTOMERS where Cname='Cisneros');
++------+---------+------------+------+------+
+| Onum | Amt     | Odate      | Cnum | Snum |
++------+---------+------------+------+------+
+| 3001 |   18.69 | 1990-10-03 | 2008 | 1007 |
+| 3006 | 1098.16 | 1990-10-03 | 2008 | 1007 |
++------+---------+------------+------+------+
+2 rows in set (0.00 sec)
+ 
+
+2)
+D1_TARUNK_80767>select cname, rating from CUSTOMERS, ORDERS where ORDERS.cnum = CUSTOMERS.cnum and ORDERS.amt > (select AVG(AMT) FROM ORDERS);
++---------+--------+
+| cname   | rating |
++---------+--------+
+| Liu     |    200 |
+| Clemens |    100 |
+| Clemens |    100 |
++---------+--------+
+3 rows in set (0.00 sec)
+
+
+3)
+D1_TARUNK_80767>SELECT SUM(AMT) FROM ORDERS,SALESPERSON WHERE ORDERS.SNUM = SALESPERSON.SNUM GROUP BY SNAME HAVING SUM(ORDERS.AMT) >  (SELECT MAX(AMT) FROM ORDERS);
++----------+
+| SUM(AMT) |
++----------+
+| 15382.07 |
++----------+
+1 row in set (0.00 sec)
+
+
+
+**************************************************************** END OF SQL ASSIGNMENT-11 *************************************************************

@@ -1,0 +1,209 @@
+=============================== PL-Exercise 2 =============================
+
+Ques-1)
+*******
+
+delimiter //
+create procedure checkInRangeee()
+begin
+	declare num int;
+	select empno into num from emp1 where ename='T';
+	if (num BETWEEN 1 and 10) then
+		insert into Exercise2 values (num, 'In Range');
+	else
+		insert into Exercise2 values (num, 'Not In Range');	
+	end if;
+end; //
+delimiter ;
+
+D1_TARUNK_80767>create procedure checkInRangeee()
+    -> begin
+    -> declare num int;
+    -> select empno into num from emp1 where ename='T';
+    -> if (num BETWEEN 1 and 10) then
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> insert into Exercise2 values (num, 'In Range');
+    -> else
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> insert into Exercise2 values (num, 'Not In Range');
+    -> end if;
+    -> end; //
+Query OK, 0 rows affected (0.01 sec)
+
+D1_TARUNK_80767>delimiter ;
+D1_TARUNK_80767>call checkInRangeee();
+Query OK, 1 row affected (0.11 sec)
+
+D1_TARUNK_80767>select * from Exercise2;
++------+--------------+
+| a    | b            |
++------+--------------+
+|    1 | In Range     |
+|   12 | Not In Range |
+|   12 | Not In Range |
++------+--------------+
+3 rows in set (0.00 sec)
+
+D1_TARUNK_80767>
+
+
+===========================================================================
+Ques-2)
+*******
+
+delimiter //
+create procedure isValidTrianglee()
+begin
+	declare side1 int;
+	declare side2 int;
+	declare side3 int;
+	select empno into side1 from emp1 where ename='A';
+	select empno into side2 from emp1 where ename='B';
+	select empno into side3 from emp1 where ename='T';
+	/*declare checkIf boolean;*/
+	if ((side1+side3)>side2) then
+		insert into Exercise2 values(1,'Valid Triangle');	
+	else
+		insert into Exercise2 values(0,'Invalid Triangle');
+	end if;
+end; //
+delimiter ;
+
+D1_TARUNK_80767>delimiter //
+D1_TARUNK_80767>create procedure isValidTrianglee()
+    -> begin
+    -> declare side1 int;
+    -> declare side2 int;
+    -> declare side3 int;
+    -> select empno into side1 from emp1 where ename='A';
+    -> select empno into side2 from emp1 where ename='B';
+    -> select empno into side3 from emp1 where ename='T';
+    -> /*declare checkIf boolean;*/
+    -> if ((side1+side3)>side2) then
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> insert into Exercise2 values(1,'Valid Triangle');
+    -> else
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> insert into Exercise2 values(0,'Invalid Triangle');
+    -> end if;
+    -> end; //
+Query OK, 0 rows affected (0.00 sec)
+
+D1_TARUNK_80767>delimiter ;
+D1_TARUNK_80767>call isValidTrianglee();
+Query OK, 1 row affected (0.15 sec)
+
+D1_TARUNK_80767>select * from Exercise2;
++------+------------------+
+| a    | b                |
++------+------------------+
+|    1 | In Range         |
+|   12 | Not In Range     |
+|   12 | Not In Range     |
+|    0 | Invalid Triangle |
+|    0 | Invalid Triangle |
+|    1 | Valid Triangle   |
++------+------------------+
+6 rows in set (0.00 sec)
+
+D1_TARUNK_80767>
+
+
+===========================================================================
+Ques 3:
+*******
+
+delimiter //
+create procedure isLeapYearr()
+begin
+	declare year int;
+	select Cnum into year from ORDERS where Onum=3013;
+	if ((year%4=0 and year%100<>0) or (year%4=0 and year%400=0)) then 
+		insert into Exercise2 values(year, 'Leap year');
+	else
+		insert into Exercise2 values(year, 'Non-Leap year');
+	end if;
+end; //
+delimiter ;
+
+
+D1_TARUNK_80767>delimiter //
+D1_TARUNK_80767>create procedure isLeapYear()
+    -> begin
+    -> declare year int;
+    -> select Cnum into year from ORDERS where Onum=1020;
+    -> if ((year%4=0 and year%100<>0) or (year%4=0 and year%400=0)) then 
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> insert into Exercise2 values(year, 'Leap year');
+    -> else
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> insert into Exercise2 values(year, 'Non-Leap year');
+    -> end if;
+    -> end; //
+Query OK, 0 rows affected (0.00 sec)
+
+D1_TARUNK_80767>delimiter ;
+D1_TARUNK_80767>call isLeapYear();
+Query OK, 1 row affected (0.08 sec)
+
+D1_TARUNK_80767>select * from Exercise2;
++------+------------------+
+| a    | b                |
++------+------------------+
+|    1 | In Range         |
+|   12 | Not In Range     |
+|   12 | Not In Range     |
+|    0 | Invalid Triangle |
+|    0 | Invalid Triangle |
+|    1 | Valid Triangle   |
+| 2020 | Leap year        |
++------+------------------+
+7 rows in set (0.00 sec)
+
+D1_TARUNK_80767>delimiter //
+D1_TARUNK_80767>create procedure isLeapYearr()
+    -> begin
+    -> declare year int;
+    -> select Cnum into year from ORDERS where Onum=3013;
+    -> if ((year%4=0 and year%100<>0) or (year%4=0 and year%400=0)) then 
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> insert into Exercise2 values(year, 'Leap year');
+    -> else
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> insert into Exercise2 values(year, 'Non-Leap year');
+    -> end if;
+    -> end; //
+Query OK, 0 rows affected (0.00 sec)
+
+D1_TARUNK_80767>delimiter ;
+D1_TARUNK_80767>
+D1_TARUNK_80767>call isLeapYearr();
+Query OK, 1 row affected (0.08 sec)
+
+D1_TARUNK_80767>select * from Exercise2;
++------+------------------+
+| a    | b                |
++------+------------------+
+|    1 | In Range         |
+|   12 | Not In Range     |
+|   12 | Not In Range     |
+|    0 | Invalid Triangle |
+|    0 | Invalid Triangle |
+|    1 | Valid Triangle   |
+| 2020 | Leap year        |
+| 2017 | Non-Leap year    |
++------+------------------+
+8 rows in set (0.00 sec)
+
+
+================================ end of exercise ==========================
+
+

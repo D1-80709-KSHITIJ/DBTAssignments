@@ -1,0 +1,79 @@
+
+******************************************************************* SQL ASSIGNMENT-12 *****************************************************************
+
+
+1)
+D1_TARUNK_80767>select * from CUSTOMERS where rating >= any (select rating from CUSTOMERS, SALESPERSON where CUSTOMERS.Snum = SALESPERSON.Snum and Sname = 'Serres');
++------+----------+----------+--------+------+
+| Cnum | Cname    | City     | Rating | Snum |
++------+----------+----------+--------+------+
+| 2002 | Giovanni | Rome     |    200 | 1003 |
+| 2003 | Liu      | San Jose |    200 | 1002 |
+| 2004 | Grass    | Berlin   |    300 | 1002 |
+| 2008 | Cisneros | San Jose |    300 | 1007 |
+| 2009 | Aman     | Ayodhya  |    255 | 1006 |
++------+----------+----------+--------+------+
+5 rows in set (0.01 sec)
+
+
+
+2)
+D1_TARUNK_80767>select Sname from SALESPERSON where city <> ALL(select CUSTOMERS.city from CUSTOMERS, SALESPERSON where CUSTOMERS.Snum = SALESPERSON.Snum AND CUSTOMERS.city = SALESPERSON.City);
++---------+
+| Sname   |
++---------+
+| Rifkin  |
+| Axelrod |
++---------+
+2 rows in set (0.00 sec)
+
+
+
+3)
+D1_TARUNK_80767>select * from ORDERS where amt>any(select Amt from ORDERS, CUSTOMERS where CUSTOMERS.city ='London' and CUSTOMERS.cnum=ORDERS.cnum); 
++------+---------+------------+------+------+
+| Onum | Amt     | Odate      | Cnum | Snum |
++------+---------+------------+------+------+
+| 3002 | 1900.10 | 1990-10-03 | 2007 | 1004 |
+| 3005 | 5160.45 | 1990-10-03 | 2003 | 1002 |
+| 3006 | 1098.16 | 1990-10-03 | 2008 | 1007 |
+| 3009 | 1713.23 | 1990-10-04 | 2002 | 1003 |
+| 3008 | 4723.00 | 1990-10-04 | 2006 | 1001 |
+| 3011 | 9891.88 | 1990-10-04 | 2006 | 1001 |
++------+---------+------------+------+------+
+6 rows in set (0.00 sec)
+
+---------------------------------- or -------------------------------------
+
+D1_TARUNK_80767>select * from ORDERS where amt> any (select amt from ORDERS where Cnum=any(select Cnum from CUSTOMERS where city='London'));
++------+---------+------------+------+------+
+| Onum | Amt     | Odate      | Cnum | Snum |
++------+---------+------------+------+------+
+| 3002 | 1900.10 | 1990-10-03 | 2007 | 1004 |
+| 3005 | 5160.45 | 1990-10-03 | 2003 | 1002 |
+| 3006 | 1098.16 | 1990-10-03 | 2008 | 1007 |
+| 3009 | 1713.23 | 1990-10-04 | 2002 | 1003 |
+| 3008 | 4723.00 | 1990-10-04 | 2006 | 1001 |
+| 3011 | 9891.88 | 1990-10-04 | 2006 | 1001 |
++------+---------+------------+------+------+
+6 rows in set (0.00 sec)
+
+
+
+
+4)
+D1_TARUNK_80767>select * from ORDERS where amt> (select min(Amt) from ORDERS, CUSTOMERS where ORDERS.cnum=CUSTOMERS.cnum and CUSTOMERS.city='London');
++------+---------+------------+------+------+
+| Onum | Amt     | Odate      | Cnum | Snum |
++------+---------+------------+------+------+
+| 3002 | 1900.10 | 1990-10-03 | 2007 | 1004 |
+| 3005 | 5160.45 | 1990-10-03 | 2003 | 1002 |
+| 3006 | 1098.16 | 1990-10-03 | 2008 | 1007 |
+| 3009 | 1713.23 | 1990-10-04 | 2002 | 1003 |
+| 3008 | 4723.00 | 1990-10-04 | 2006 | 1001 |
+| 3011 | 9891.88 | 1990-10-04 | 2006 | 1001 |
++------+---------+------------+------+------+
+6 rows in set (0.00 sec)
+
+
+**************************************************************** END OF SQL ASSIGNMENT-12 *************************************************************

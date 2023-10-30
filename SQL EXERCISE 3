@@ -1,0 +1,133 @@
+
+
+******************************************************************* SQL EXCERCISE 3 *******************************************************************
+
+
+1)
+D1_TARUNK_80767>Select CONCAT(UPPER(SUBSTR(Sname,1,1)),LOWER(SUBSTR(Sname,2))) AS Name from SUPPLIER;
++-------+
+| Name  |
++-------+
+| Smith |
+| Jones |
+| Blake |
+| Clark |
+| Adams |
++-------+
+5 rows in set (0.00 sec)
+
+
+2)
+D1_TARUNK_80767>select upper(Sname) from SUPPLIER;
++--------------+
+| upper(Sname) |
++--------------+
+| SMITH        |
+| JONES        |
+| BLAKE        |
+| CLARK        |
+| ADAMS        |
++--------------+
+5 rows in set (0.00 sec)
+
+
+3)
+D1_TARUNK_80767>select lower(SName) from SUPPLIER;
++--------------+
+| lower(SName) |
++--------------+
+| smith        |
+| jones        |
+| blake        |
+| clark        |
+| adams        |
++--------------+
+5 rows in set (0.00 sec)
+
+
+4)
+D1_TARUNK_80767>select lpad(Sname,25,' ') "left padded name" from SUPPLIER;
++---------------------------+
+| left padded name          |
++---------------------------+
+|                     Smith |
+|                     Jones |
+|                     Blake |
+|                     Clark |
+|                     Adams |
++---------------------------+
+5 rows in set (0.00 sec)
+
+
+5)
+D1_TARUNK_80767>select replace(Sname,'la','ro') from SUPPLIER;
++--------------------------+
+| replace(Sname,'la','ro') |
++--------------------------+
+| Smith                    |
+| Jones                    |
+| Broke                    |
+| Crork                    |
+| Adams                    |
++--------------------------+
+5 rows in set (0.00 sec)
+
+
+6)
+D1_TARUNK_80767>select replace(replace(Sname,'l','r'),'a','o') from SUPPLIER;
++-----------------------------------------+
+| replace(replace(Sname,'l','r'),'a','o') |
++-----------------------------------------+
+| Smith                                   |
+| Jones                                   |
+| Broke                                   |
+| Crork                                   |
+| Adoms                                   |
++-----------------------------------------+
+5 rows in set (0.01 sec)
+
+
+7)
+D1_TARUNK_80767>select Sname, length(Sname) "Name Length" from SUPPLIER;
++-------+-------------+
+| Sname | Name Length |
++-------+-------------+
+| Smith |           5 |
+| Jones |           5 |
+| Blake |           5 |
+| Clark |           5 |
+| Adams |           5 |
++-------+-------------+
+5 rows in set (0.00 sec)
+
+
+8)
+D1_TARUNK_80767>select * from SUPPLIER where soundex(Sname)= soundex('BLOKE');
++------+-------+--------+-------+
+| S#   | Sname | Status | City  |
++------+-------+--------+-------+
+| S3   | Blake |     30 | Paris |
++------+-------+--------+-------+
+1 row in set (0.00 sec)
+
+
+9)
+
+
+
+10)
+D1_TARUNK_80767>select dayname(curdate());
++--------------------+
+| dayname(curdate()) |
++--------------------+
+| Saturday           |
++--------------------+
+1 row in set (0.00 sec)
+
+
+***************************************************************** END OF SQL Exercise 2 ************************************************************
+
+
+
+
+

@@ -1,0 +1,216 @@
+=============================== PL-Exercise 3 =============================
+
+Ques-1)
+*******
+
+delimiter //
+create procedure func()
+begin
+	declare i int default 1;
+	while i<=1000 do
+		if (i%100=0) then
+			insert into Exercise3 values (i, 'value');
+		end if;		
+		set i=i+1;
+	end while;
+end; //
+delimiter ;
+
+D1_TARUNK_80767>create procedure func()
+    -> begin
+    -> declare i int default 1;
+    -> while i<=1000 do
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> if (i%100=0) then
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> insert into Exercise3 values (i, 'value');
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> end if;
+Display all 945 possibilities? (y or n) 
+    -> end if;
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> set i=i+1;
+    -> end while;
+    -> end; //
+Query OK, 0 rows affected (0.00 sec)
+
+D1_TARUNK_80767>delimiter ;
+D1_TARUNK_80767>call func();
+Query OK, 1 row affected (1.39 sec)
+
+D1_TARUNK_80767>select * from Exercise3;
++------+-------+
+| a    | b     |
++------+-------+
+|  100 | value |
+|  200 | value |
+|  300 | value |
+|  400 | value |
+|  500 | value |
+|  600 | value |
+|  700 | value |
+|  800 | value |
+|  900 | value |
+| 1000 | value |
++------+-------+
+10 rows in set (0.00 sec)
+
+
+===========================================================================
+Ques-2)
+*******
+
+delimiter //
+create procedure sphere()
+begin
+	declare minRadius int;
+	declare maxRadius int;
+	declare incFactor int;
+	
+	declare area int;
+	declare circum int;
+	declare volume int;
+	select min(empno) into minRadius from emp3;
+	select max(empno) into maxRadius from emp3;
+	/*select empno into incFactor from emp3 where ename='A';*/
+	set incFactor = minRadius;
+	while (incFactor<=maxRadius) do 
+		set area=0;
+		set circum=0;
+		set volume=0;
+		set area = 4*3.14*incFactor*incFactor;
+		set circum = 2*3.14*incFactor;
+		set volume = (3/4)*3.14*incFactor*incFactor*incFactor;
+		insert into Exercise3 values (circum, 'circumference');
+		insert into Exercise3 values (area, 'area');
+		insert into Exercise3 values (volume, 'volume');
+		set incFactor = incFactor+1;	
+	end while;
+end; //
+delimiter ;
+
+D1_TARUNK_80767>delimiter //
+D1_TARUNK_80767>create procedure sphere()
+    -> begin
+    -> declare minRadius int;
+    -> declare maxRadius int;
+    -> declare incFactor int;
+    -> 
+    -> declare area int;
+    -> declare circum int;
+    -> declare volume int;
+    -> select min(empno) into minRadius from emp3;
+    -> select max(empno) into maxRadius from emp3;
+    -> /*select empno into incFactor from emp3 where ename='A';*/
+    -> set incFactor = minRadius;
+    -> while (incFactor<=maxRadius) do 
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> set area=0;
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> set circum=0;
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> set volume=0;
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> set area = 4*3.14*incFactor*incFactor;
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> set circum = 2*3.14*incFactor;
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> set volume = (3/4)*3.14*incFactor*incFactor*incFactor;
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> insert into Exercise3 values (circum, 'circumference');
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> insert into Exercise3 values (area, 'area');
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> insert into Exercise3 values (volume, 'volume');
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> set incFactor = incFactor+1;
+    -> end while;
+    -> end; //
+Query OK, 0 rows affected (0.00 sec)
+
+D1_TARUNK_80767>delimiter ;
+D1_TARUNK_80767>call sphere();
+Query OK, 1 row affected (1.70 sec)
+
+D1_TARUNK_80767>select * from Exercise3;
++------+---------------+
+| a    | b             |
++------+---------------+
+|  100 | value         |
+|  200 | value         |
+|  300 | value         |
+|  400 | value         |
+|  500 | value         |
+|  600 | value         |
+|  700 | value         |
+|  800 | value         |
+|  900 | value         |
+| 1000 | value         |
+|    6 | circumference |
+|   13 | area          |
+|    2 | volume        |
+|   13 | circumference |
+|   50 | area          |
+|   19 | volume        |
+|   19 | circumference |
+|  113 | area          |
+|   64 | volume        |
+|   25 | circumference |
+|  201 | area          |
+|  151 | volume        |
+|   31 | circumference |
+|  314 | area          |
+|  294 | volume        |
++------+---------------+
+25 rows in set (0.00 sec)
+
+
+===========================================================================
+Ques 3:
+*******
+
+delimiter //
+create procedure isPalindrome()
+begin
+	declare start int default 1;
+	declare str char(5);
+	declare isPal boolean default true;
+	declare end int;
+	set end = length(str);
+	select ename into str from emp where empno=7369;
+	repeat 
+		if (substr(str,start,1) <> substr(str,-start,1)) then
+			set isPal = false;
+			leave;
+		end if;
+		set start=start+1;
+	until start < (length(str)/2)
+	end repeat;
+	if isPal=true then
+		insert into Exercise3 values(1, 'palindrome');
+	else
+		insert into Exercise3 values(0, 'NOT palindrome');
+	end if;
+end; //
+delimiter ;
+
+
+================================ end of exercise ==========================
+
+

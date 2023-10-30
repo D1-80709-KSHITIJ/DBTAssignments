@@ -1,0 +1,416 @@
+SQL EXERCISE 1
+**************
+
+Q1) Created the SEMP Table-
+
+D1_TARUNK_80767>create table SEMP(
+    -> EMPNO char(4),
+    -> EMPNAME char(20),
+    -> BASIC float,
+    -> DEPTNO char(2),
+    -> DEPTHEAD char(4)
+    -> );
+Query OK, 0 rows affected (0.82 sec)
+
+*********************************************************************************
+
+2) Created the SDEPT table-
+
+D1_TARUNK_80767>create table SDEPT (
+    -> DEPTNO char(2),
+    -> DEPTNAME char(15)
+    -> );
+Query OK, 0 rows affected (1.34 sec)
+
+*********************************************************************************
+
+3) 
+
+D1_TARUNK_80767>INSERT INTO SDEPT VALUES (10, 'Development');
+Query OK, 1 row affected (0.18 sec)
+
+D1_TARUNK_80767>INSERT INTO SDEPT VALUES (20, 'Training');
+Query OK, 1 row affected (0.19 sec)
+
+*********************************************************************************
+4) 
+
+D1_TARUNK_80767>insert into SEMP values ('0001', 'SUNIL',6000, '10',NULL); 
+Query OK, 1 row affected (0.23 sec)
+
+D1_TARUNK_80767>insert into SEMP values ('0002', 'HIREN',8000, '20', NULL);
+Query OK, 1 row affected (0.18 sec)
+
+D1_TARUNK_80767>insert into SEMP values ('0003', 'ALI', 4000, '10', '0001');
+Query OK, 1 row affected (0.18 sec)
+
+D1_TARUNK_80767>insert into SEMP values ('0004', 'GEORGE', 6000, NULL, '0002');
+Query OK, 1 row affected (0.17 sec)
+
+
+
+D1_TARUNK_80767>oD1_TARUNK_80767>create table SUPPLIER(
+    -> `S#` char(5), 
+    -> Sname char(20),
+    -> Status INT,
+    -> City char(15)
+    -> );
+
+
+D1_TARUNK_80767>create table PARTS(`P#` char(6), Pname char(20), Color char(6), Weight int, City char(15));
+Query OK, 0 rows affected (0.73 sec)
+
+D1_TARUNK_80767>create table PROJECTS(`J#` char(4), Jname char(10), City char(15));
+Query OK, 0 rows affected (0.81 sec)
+
+D1_TARUNK_80767>CREATE TABLE SPJ (`S#` CHAR(4), `P#` CHAR(4), `J#` CHAR(4), Qty INT);
+Query OK, 0 rows affected (0.45 sec)
+
+
+D1_TARUNK_80767>show tables;                                              +---------------+
+| Tables_in_DAC |
++---------------+
+| CUSTOMERS     |
+| EMP           |
+| ORDERS        |
+| PARTS         |
+| PROJECTS      |
+| SALESPERSON   |
+| SDEPT         |
+| SEMP          |
+| SPJ           |
+| SUPPLIER      |
++---------------+
+10 rows in set (0.00 sec)
+
+
+--------------------------------------
+INSERTING THE DATA INTO SUPPLIER TABLE
+--------------------------------------
+
+D1_TARUNK_80767>insert into SUPPLIER values('S1', 'Smith', 20, 'London');
+Query OK, 1 row affected (0.15 sec)
+
+D1_TARUNK_80767>insert into SUPPLIER values('S2', 'Jones', 10, 'Paris');
+Query OK, 1 row affected (0.15 sec)
+
+D1_TARUNK_80767>insert into SUPPLIER values('S3', 'Blake', 30, 'Paris');
+Query OK, 1 row affected (0.35 sec)
+
+D1_TARUNK_80767>insert into SUPPLIER values('S4', 'Clark', 20, 'London');
+Query OK, 1 row affected (0.12 sec)
+
+D1_TARUNK_80767>insert into SUPPLIER values('S5', 'Adams', 30, 'Athens');
+Query OK, 1 row affected (0.21 sec)
+
+
+-----------------------------------
+INSERTING THE DATA INTO PARTS TABLE
+-----------------------------------
+
+D1_TARUNK_80767>insert into PARTS values('P1', 'Nut', 'Red', 12, 'London');
+Query OK, 1 row affected (0.15 sec)
+
+D1_TARUNK_80767>insert into PARTS values('P2', 'Bolt', 'Green', 17, 'Paris');
+Query OK, 1 row affected (0.17 sec)
+
+D1_TARUNK_80767>insert into PARTS values('P3', 'Screw', 'Blue', 17, 'Rome');
+Query OK, 1 row affected (0.36 sec)
+
+D1_TARUNK_80767>insert into PARTS values('P4', 'Screw', 'Red', 14, 'London');
+Query OK, 1 row affected (0.12 sec)
+
+D1_TARUNK_80767>insert into PARTS values('P5', 'Cam', 'Blue', 12, 'Paris');
+Query OK, 1 row affected (0.12 sec)
+
+D1_TARUNK_80767>insert into PARTS values('P6', 'Cog', 'Red', 19, 'London');
+Query OK, 1 row affected (0.16 sec)
+
+
+--------------------------------------
+INSERTING THE DATA INTO PROJECTS TABLE
+--------------------------------------
+
+
+D1_TARUNK_80767>insert into PROJECTS values ('J1', 'Sorter', 'Paris');
+Query OK, 1 row affected (0.10 sec)
+
+D1_TARUNK_80767>insert into PROJECTS values ('J2', 'Punch', 'Rome');
+Query OK, 1 row affected (0.08 sec)
+
+D1_TARUNK_80767>insert into PROJECTS values ('J3', 'Reader', 'Athens');
+Query OK, 1 row affected (0.24 sec)
+
+D1_TARUNK_80767>insert into PROJECTS values ('J4', 'Console', 'Athens');
+Query OK, 1 row affected (0.08 sec)
+
+D1_TARUNK_80767>insert into PROJECTS values ('J5', 'Collator', 'London');
+Query OK, 1 row affected (0.09 sec)
+
+D1_TARUNK_80767>insert into PROJECTS values ('J6', 'Terminal', 'Oslo');
+Query OK, 1 row affected (0.10 sec)
+
+D1_TARUNK_80767>insert into PROJECTS values ('J7', 'Tape', 'London');
+Query OK, 1 row affected (0.12 sec)
+
+insert into PROJECTS values ('J1', 'Sorter', 'Paris');
+insert into PROJECTS values ('J2', 'Punch', 'Rome');
+insert into PROJECTS values ('J3', 'Reader', 'Athens');
+insert into PROJECTS values ('J4', 'Console', 'Athens');
+insert into PROJECTS values ('J5', 'Collator', 'London');
+insert into PROJECTS values ('J6', 'Terminal', 'Oslo');
+insert into PROJECTS values ('J7', 'Tape', 'London');
+
+---------------------------------
+INSERTING THE DATA INTO SPJ TABLE
+---------------------------------
+
+D1_TARUNK_80767>insert into SPJ values ('S1', 'P1', 'J1', 200);
+Query OK, 1 row affected (0.09 sec)
+
+D1_TARUNK_80767>insert into SPJ values ('S1', 'P1', 'J4', 700);
+Query OK, 1 row affected (0.08 sec)
+
+D1_TARUNK_80767>insert into SPJ values ('S2', 'P3', 'J1', 400);
+Query OK, 1 row affected (0.23 sec)
+
+D1_TARUNK_80767>insert into SPJ values ('S2', 'P3', 'J2', 200);
+Query OK, 1 row affected (0.09 sec)
+
+D1_TARUNK_80767>insert into SPJ values ('S2', 'P3', 'J3', 200);
+Query OK, 1 row affected (0.08 sec)
+
+D1_TARUNK_80767>insert into SPJ values ('S2', 'P3', 'J4', 500);
+Query OK, 1 row affected (0.09 sec)
+
+D1_TARUNK_80767>insert into SPJ values ('S2', 'P3', 'J5', 600);
+Query OK, 1 row affected (0.08 sec)
+
+D1_TARUNK_80767>insert into SPJ values ('S2', 'P3', 'J6', 400);
+Query OK, 1 row affected (0.08 sec)
+
+D1_TARUNK_80767>insert into SPJ values ('S2', 'P3', 'J7', 800);
+Query OK, 1 row affected (0.09 sec)
+
+D1_TARUNK_80767>insert into SPJ values ('S2', 'P5', 'J2', 100);
+Query OK, 1 row affected (0.09 sec)
+
+D1_TARUNK_80767>insert into SPJ values ('S3', 'P3', 'J1', 200);
+Query OK, 1 row affected (0.08 sec)
+
+D1_TARUNK_80767>insert into SPJ values ('S3', 'P4', 'J2', 500);
+Query OK, 1 row affected (0.08 sec)
+
+D1_TARUNK_80767>insert into SPJ values ('S4', 'P6', 'J3', 300);
+Query OK, 1 row affected (0.09 sec)
+
+D1_TARUNK_80767>insert into SPJ values ('S4', 'P6', 'J7', 300);
+Query OK, 1 row affected (0.08 sec)
+
+D1_TARUNK_80767>insert into SPJ values ('S5', 'P2', 'J2', 200);
+Query OK, 1 row affected (0.08 sec)
+
+D1_TARUNK_80767>insert into SPJ values ('S5', 'P2', 'J4', 100);
+Query OK, 1 row affected (0.09 sec)
+
+D1_TARUNK_80767>insert into SPJ values ('S5', 'P5', 'J5', 500);
+Query OK, 1 row affected (0.08 sec)
+
+D1_TARUNK_80767>insert into SPJ values ('S5', 'P5', 'J7', 100);
+Query OK, 1 row affected (0.08 sec)
+
+D1_TARUNK_80767>insert into SPJ values ('S5', 'P6', 'J2', 200);
+Query OK, 1 row affected (0.08 sec)
+
+D1_TARUNK_80767>insert into SPJ values ('S5', 'P1', 'J4', 100);
+Query OK, 1 row affected (0.08 sec)
+
+D1_TARUNK_80767>insert into SPJ values ('S5', 'P3', 'J4', 200);
+Query OK, 1 row affected (0.08 sec)
+
+D1_TARUNK_80767>insert into SPJ values ('S5', 'P4', 'J4', 800);
+Query OK, 1 row affected (0.09 sec)
+
+D1_TARUNK_80767>insert into SPJ values ('S5', 'P5', 'J4', 400);
+Query OK, 1 row affected (0.08 sec)
+
+D1_TARUNK_80767>insert into SPJ values ('S5', 'P6', 'J4', 500);
+Query OK, 1 row affected (0.10 sec)
+
+*********************************************************************************
+
+5)
+
+i) D1_TARUNK_80767>select * from SUPPLIER;
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| S1   | Smith |     20 | London |
+| S2   | Jones |     10 | Paris  |
+| S3   | Blake |     30 | Paris  |
+| S4   | Clark |     20 | London |
+| S5   | Adams |     30 | Athens |
++------+-------+--------+--------+
+5 rows in set (0.00 sec)
+
+ii) D1_TARUNK_80767>select `S#`,Sname from SUPPLIER;
++------+-------+
+| S#   | Sname |
++------+-------+
+| S1   | Smith |
+| S2   | Jones |
+| S3   | Blake |
+| S4   | Clark |
+| S5   | Adams |
++------+-------+
+5 rows in set (0.00 sec)
+
+iii) D1_TARUNK_80767>select Pname, Color from PARTS where City = 'London';
++-------+-------+
+| Pname | Color |
++-------+-------+
+| Nut   | Red   |
+| Screw | Red   |
+| Cog   | Red   |
++-------+-------+
+3 rows in set (0.00 sec)
+
+iv) D1_TARUNK_80767>select * from SUPPLIER where City='London';
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| S1   | Smith |     20 | London |
+| S4   | Clark |     20 | London |
++------+-------+--------+--------+
+2 rows in set (0.00 sec)
+
+v) 
+D1_TARUNK_80767>select * from SUPPLIER where City ='Paris' or City='Athens';
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| S2   | Jones |     10 | Paris  |
+| S3   | Blake |     30 | Paris  |
+| S5   | Adams |     30 | Athens |
++------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+----------------------------------OR---------------------------------------
+
+D1_TARUNK_80767>select * from SUPPLIER where City IN('Paris','Athens'); 
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| S2   | Jones |     10 | Paris  |
+| S3   | Blake |     30 | Paris  |
+| S5   | Adams |     30 | Athens |
++------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+vi) D1_TARUNK_80767>select * from PROJECTS where City='Athens';
++------+---------+--------+
+| J#   | Jname   | City   |
++------+---------+--------+
+| J3   | Reader  | Athens |
+| J4   | Console | Athens |
++------+---------+--------+
+2 rows in set (0.00 sec)
+
+vii)
+D1_TARUNK_80767>select Pname from PARTS where weight>=12 and weight<=14;
++-------+
+| Pname |
++-------+
+| Nut   |
+| Screw |
+| Cam   |
++-------+
+3 rows in set (0.00 sec)
+ 	
+--------------------------------OR--------------------------------------
+
+D1_TARUNK_80767>select Pname from PARTS where weight between 12 and 14;
++-------+
+| Pname |
++-------+
+| Nut   |
+| Screw |
+| Cam   |
++-------+
+3 rows in set (0.00 sec)
+
+
+viii) 
+D1_TARUNK_80767>select * from SUPPLIER where Status >= 20;
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| S1   | Smith |     20 | London |
+| S3   | Blake |     30 | Paris  |
+| S4   | Clark |     20 | London |
+| S5   | Adams |     30 | Athens |
++------+-------+--------+--------+
+4 rows in set (0.00 sec)
+
+ix)
+D1_TARUNK_80767>select * from SUPPLIER where City not in('London');
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| S2   | Jones |     10 | Paris  |
+| S3   | Blake |     30 | Paris  |
+| S5   | Adams |     30 | Athens |
++------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+----------------------------------OR---------------------------------------
+
+D1_TARUNK_80767>select * from SUPPLIER where City <> 'London';
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| S2   | Jones |     10 | Paris  |
+| S3   | Blake |     30 | Paris  |
+| S5   | Adams |     30 | Athens |
++------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+
+x)
+D1_TARUNK_80767>select distinct City from SUPPLIER;
++--------+
+| City   |
++--------+
+| London |
+| Paris  |
+| Athens |
++--------+
+3 rows in set (0.00 sec)
+
+xi)
+D1_TARUNK_80767>select Weight, Weight/1000 "Weight_IN_KG", weight*10 "WIGHT_IN_MILLIGRAMS" from PARTS;
++--------+--------------+---------------------+
+| Weight | Weight_IN_KG | WIGHT_IN_MILLIGRAMS |
++--------+--------------+---------------------+
+|     12 |       0.0120 |                 120 |
+|     17 |       0.0170 |                 170 |
+|     17 |       0.0170 |                 170 |
+|     14 |       0.0140 |                 140 |
+|     12 |       0.0120 |                 120 |
+|     19 |       0.0190 |                 190 |
++--------+--------------+---------------------+
+6 rows in set (0.00 sec)
+
+
+-----------------------------end of SQL-EXERCISE 1-------------------------
+
+
+
+
+
+
+
+
+
+
+

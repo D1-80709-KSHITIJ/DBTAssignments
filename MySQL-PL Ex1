@@ -1,0 +1,191 @@
+1)
+delimiter //
+create procedure calculate()
+begin
+	declare length float default 10.0;
+	declare breadth float default 5.0;
+	declare area float;
+	declare perimeter float;
+	set area = length*breadth;
+	set perimeter = 2*(length+breadth);
+	insert into tempp values(area, 'areaOfRect');
+	insert into tempp values(perimeter, 'PerimeterOfRect');
+end; //
+delimiter ;
+
+D1_TARUNK_80767>create procedure calculate()
+    -> begin
+    -> declare length float default 10.0;
+    -> declare breadth float default 5.0;
+    -> declare area float;
+    -> declare perimeter float;
+    -> set area = length*breadth;
+    -> set perimeter = 2*(length+breadth);
+    -> insert into tempp values(area, 'areaOfRect');
+    -> insert into tempp values(perimeter, 'PerimeterOfRect');
+    -> end; //
+Query OK, 0 rows affected (0.07 sec)
+
+D1_TARUNK_80767>delimiter ;
+D1_TARUNK_80767>call calculate();
+Query OK, 1 row affected (0.34 sec)
+
+D1_TARUNK_80767>select * from tempp;
++-------+-----------------+
+| first | second          |
++-------+-----------------+
+|     1 | A               |
+|     2 | B               |
+|     3 | C               |
+|     4 | D               |
+|     5 | E               |
+|    10 | Hello Dear!     |
+|    10 | Hello Tarun     |
+|     1 | CDAC            |
+|  5000 | ARUN            |
+|  2000 | HRA             |
+|    50 | areaOfRect      |
+|    30 | PerimeterOfRect |
++-------+-----------------+
+12 rows in set (0.00 sec)
+
+
+2)
+delimiter //
+create procedure convertTempp()
+begin
+	declare cel float default 30;
+	declare feh float default 89;
+	declare celToFeh float;
+	declare fehToCel float;
+	set celToFeh = ((9/5)*cel)+32;
+	set fehToCel = (feh-32)*(5/9);
+	insert into tempp values (celToFeh, 'Celsius to Feh');
+	insert into tempp values (fehToCel, 'Feh to Celsius');
+end; //
+delimiter ;
+
+D1_TARUNK_80767>delimiter //
+D1_TARUNK_80767>create procedure convertTempp()
+    -> begin
+    -> declare cel float default 30;
+    -> declare feh float default 89;
+    -> declare celToFeh float;
+    -> declare fehToCel float;
+    -> set celToFeh = ((9/5)*cel)+32;
+    -> set fehToCel = (feh-32)*(5/9);
+    -> insert into tempp values (celToFeh, 'Celsius to Feh');
+    -> insert into tempp values (fehToCel, 'Feh to Celsius');
+    -> end; //
+Query OK, 0 rows affected (0.00 sec)
+
+D1_TARUNK_80767>delimiter ;
+D1_TARUNK_80767>
+D1_TARUNK_80767>call convertTempp();
+Query OK, 1 row affected (0.32 sec)
+
+D1_TARUNK_80767>select * from tempp;
++-------+-----------------+
+| first | second          |
++-------+-----------------+
+|     1 | A               |
+|     2 | B               |
+|     3 | C               |
+|     4 | D               |
+|     5 | E               |
+|    10 | Hello Dear!     |
+|    10 | Hello Tarun     |
+|     1 | CDAC            |
+|  5000 | ARUN            |
+|  2000 | HRA             |
+|    50 | areaOfRect      |
+|    30 | PerimeterOfRect |
+|    86 | Celsius to Feh  |
+|    32 | Feh to Celsius  |
++-------+-----------------+
+14 rows in set (0.00 sec)
+
+D1_TARUNK_80767>
+
+
+3)
+delimiter //
+create procedure checkNum(num int)
+begin
+	if ((num%5)=0) then
+		insert into tempp values (num, 'comp divisible');
+	else
+		insert into tempp values (num, 'not divisible');
+	end if;
+end; //
+delimiter ;
+
+D1_TARUNK_80767>delimiter //
+D1_TARUNK_80767>create procedure checkNum(num int)
+    -> begin
+    -> if ((num%5)=0) then
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> insert into tempp values (num, 'comp divisible');
+    -> else
+    -> 
+Display all 945 possibilities? (y or n) 
+    -> insert into tempp values (num, 'not divisible');
+    -> end if;
+    -> end; //
+Query OK, 0 rows affected (0.00 sec)
+
+D1_TARUNK_80767>delimiter ;
+D1_TARUNK_80767>call checkNum(12);
+Query OK, 1 row affected (0.11 sec)
+
+D1_TARUNK_80767>select * from tempp;
++-------+-----------------+
+| first | second          |
++-------+-----------------+
+|     1 | A               |
+|     2 | B               |
+|     3 | C               |
+|     4 | D               |
+|     5 | E               |
+|    10 | Hello Dear!     |
+|    10 | Hello Tarun     |
+|     1 | CDAC            |
+|  5000 | ARUN            |
+|  2000 | HRA             |
+|    50 | areaOfRect      |
+|    30 | PerimeterOfRect |
+|    86 | Celsius to Feh  |
+|    32 | Feh to Celsius  |
+|    12 | not divisible   |
++-------+-----------------+
+15 rows in set (0.00 sec)
+
+D1_TARUNK_80767>call checkNum(10);
+Query OK, 1 row affected (0.09 sec)
+
+D1_TARUNK_80767>select * from tempp;
++-------+-----------------+
+| first | second          |
++-------+-----------------+
+|     1 | A               |
+|     2 | B               |
+|     3 | C               |
+|     4 | D               |
+|     5 | E               |
+|    10 | Hello Dear!     |
+|    10 | Hello Tarun     |
+|     1 | CDAC            |
+|  5000 | ARUN            |
+|  2000 | HRA             |
+|    50 | areaOfRect      |
+|    30 | PerimeterOfRect |
+|    86 | Celsius to Feh  |
+|    32 | Feh to Celsius  |
+|    12 | not divisible   |
+|    10 | comp divisible  |
++-------+-----------------+
+16 rows in set (0.00 sec)
+
+
+

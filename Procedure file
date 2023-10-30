@@ -1,0 +1,111 @@
+procedure 1:
+------------
+
+create table emp3(empno int, ename varchar(20), sal int, deptno int);
+
+delimiter //
+create procedure abcd()
+begin
+	declare a int;
+	declare b varchar(15);
+	declare c int;
+	declare d int;
+	declare x int default 0;
+	declare c1 cursor for select * from emp3;
+	open c1;
+	while x<5 do 
+		fetch c1 into a,b,c,d;
+		insert into tempp values (a,b);
+		set x=x+1;
+	end while;
+	close c1;
+end; //
+delimiter ;
+
+
+procedure 2:
+------------
+
+delimiter //
+create procedure abc0()
+begin
+	declare x int;
+	set x =10;
+	insert into tempp values(x,'Hello Dear!');
+end; //
+delimiter ;
+
+
+procedure 3:
+------------
+
+delimiter //
+create procedure abc1()
+begin
+	declare x int default 10;
+	insert into tempp values(x, 'Hello Tarun');
+end; //
+delimiter ;
+
+
+procedure 4:
+------------
+
+delimiter //
+create procedure abc2()
+begin
+	declare x char(10) default 'CDAC';
+	insert into tempp values(1,x);
+end; //
+delimiter ; 
+
+
+procedure 5:
+------------
+
+delimiter //
+create procedure abc3()
+begin
+	declare x int default 1;
+	declare ename char default 'KING';
+	declare sal float default 5000;
+	declare comm float default 0.40;
+	declare hra float;
+	set hra = sal*comm;
+	insert into tempp values (x, ename);
+	insert into tempp values (sal, hra);
+end; //
+delimiter ;
+
+
+procedure 5:
+------------
+
+delimiter //
+create procedure abc4(name char (15), sal  float, comm float)
+begin
+	declare hra float;
+	set hra = sal*comm;
+	insert into tempp values (sal, name);
+	insert into tempp values (hra, "HRA");
+end; //
+delimiter ;
+
+
+procedure 5: (ERROR)
+------------
+
+delimiter //
+create procedure abc5()
+begin
+	declare x int;
+	declare y int
+	declare hra int;
+	select sal into x from emp where ename = 'SMITH';
+	select comm into y from emp where ename = 'SMITH';
+	set hra = x*y;
+	insert into tempp values (hra, 'HRA');
+end; //
+delimiter ;
+
+

@@ -1,0 +1,52 @@
+Assignment 15:-
+
+Q1:-
+
+D1_80735_NikhilP>insert into Multicust select * from SALESPEOPLE where Snum= (select Snum from CUSTOMERS group by Snum having count(Snum)>1);
+Query OK, 1 row affected (0.02 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+D1_80735_NikhilP>select * from Multicust;
++--------+--------+------+------+------+
+| City   | Sname  | Comm | Cnum | Snum |
++--------+--------+------+------+------+
+| London | Motika | 0.11 | NULL | 1004 |
++--------+--------+------+------+------+
+1 row in set (0.00 sec)
+
+Q2:-
+
+D1_80735_NikhilP>delete from CUSTOMERS where Cnum not in (select Cnum from ORDERS);
+Query OK, 1 row affected (0.01 sec)
+
+D1_80735_NikhilP>select * from CUSTOMERS;
++------+----------+----------+--------+------+
+| Cnum | Cname    | City     | Rating | Snum |
++------+----------+----------+--------+------+
+| 2001 | Hoffman  | London   |    100 | 1001 |
+| 2001 | Giovanni | Rome     |    300 | 1003 |
+| 2003 | Liu      | San Jose |    200 | 1004 |
+| 2004 | Grass    | Berlin   |    300 | 1004 |
+| 2008 | Cisneros | San Jose |    300 | 1007 |
+| 2007 | Pereira  | Rome     |    200 | 1004 |
++------+----------+----------+--------+------+
+6 rows in set (0.00 sec)
+
+Q3:-
+
+D1_80735_NikhilP>update SALESPEOPLE set Comm = 0.2*Comm+Comm where Snum=(select Snum from ORDERS group by Snum having sum(Amt)>3000);
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+D1_80735_NikhilP>select * from SALESPEOPLE;
++-----------+---------+------+------+------+
+| City      | Sname   | Comm | Cnum | Snum |
++-----------+---------+------+------+------+
+| London    | Peel    | 0.12 | NULL | 1001 |
+| San Jose  | Serres  | 0.16 | NULL | 1002 |
+| London    | Motika  | 0.11 | NULL | 1004 |
+| Barcelona | Rifkin  | 0.15 | NULL | 1007 |
+| New York  | Axelrod | 0.10 | NULL | 1003 |
+| San Jose  | Blanco  | NULL | 1100 | NULL |
++-----------+---------+------+------+------+
+6 rows in set (0.00 sec)

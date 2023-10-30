@@ -1,0 +1,172 @@
+
+
+******************************************************************* SQL EXCERCISE 5 *******************************************************************
+
+
+1)
+D1_TARUNK_80767>SELECT SUPPLIER.SNAME, SUM(QTY) FROM SPJ, SUPPLIER WHERE SUPPLIER.`S#`=SPJ.`S#`GROUP BY SUPPLIER.SNAME;
++-------+----------+
+| SNAME | SUM(QTY) |
++-------+----------+
+| Adams |     3100 |
+| Blake |      700 |
+| Clark |      600 |
+| Jones |     3200 |
+| Smith |      900 |
++-------+----------+
+5 rows in set (0.01 sec)
+
+
+2)
+D1_TARUNK_80767>SELECT PARTS.PNAME, SUM(QTY) FROM SPJ, PARTS WHERE PARTS.`P#`=SPJ.`P#` GROUP BY PARTS.PNAME;
++-------+----------+
+| PNAME | SUM(QTY) |
++-------+----------+
+| Bolt  |      300 |
+| Cam   |     1100 |
+| Cog   |     1300 |
+| Nut   |     1000 |
+| Screw |     4800 |
++-------+----------+
+5 rows in set (0.00 sec)
+
+
+3)
+D1_TARUNK_80767>SELECT JNAME,SUM(QTY) FROM SPJ, PROJECTS WHERE PROJECTS.`J#`=SPJ.`J#` GROUP BY PROJECTS.JNAME ORDER BY 2;
++----------+----------+
+| JNAME    | SUM(QTY) |
++----------+----------+
+| Terminal |      400 |
+| Reader   |      500 |
+| Sorter   |      800 |
+| Collator |     1100 |
+| Punch    |     1200 |
+| Tape     |     1200 |
+| Console  |     3300 |
++----------+----------+
+7 rows in set (0.00 sec)
+
+
+4)
+D1_TARUNK_80767>SELECT SNAME, PNAME, JNAME, QTY FROM SPJ, SUPPLIER, PARTS, PROJECTS WHERE SUPPLIER.`S#`=SPJ.`S#` AND PARTS.`P#`=SPJ.`P#` AND PROJECTS.`J#`=SPJ.`J#` ORDER BY 1;
++-------+-------+----------+------+
+| SNAME | PNAME | JNAME    | QTY  |
++-------+-------+----------+------+
+| Adams | Screw | Console  |  200 |
+| Adams | Cam   | Collator |  500 |
+| Adams | Screw | Console  |  800 |
+| Adams | Nut   | Console  |  100 |
+| Adams | Cam   | Console  |  400 |
+| Adams | Cog   | Punch    |  200 |
+| Adams | Bolt  | Console  |  100 |
+| Adams | Bolt  | Punch    |  200 |
+| Adams | Cog   | Console  |  500 |
+| Adams | Cam   | Tape     |  100 |
+| Blake | Screw | Punch    |  500 |
+| Blake | Screw | Sorter   |  200 |
+| Clark | Cog   | Tape     |  300 |
+| Clark | Cog   | Reader   |  300 |
+| Jones | Screw | Sorter   |  400 |
+| Jones | Cam   | Punch    |  100 |
+| Jones | Screw | Terminal |  400 |
+| Jones | Screw | Tape     |  800 |
+| Jones | Screw | Reader   |  200 |
+| Jones | Screw | Console  |  500 |
+| Jones | Screw | Punch    |  200 |
+| Jones | Screw | Collator |  600 |
+| Smith | Nut   | Sorter   |  200 |
+| Smith | Nut   | Console  |  700 |
++-------+-------+----------+------+
+24 rows in set (0.00 sec)
+
+
+5)
+D1_TARUNK_80767>SELECT SNAME, PNAME, JNAME FROM SUPPLIER, PARTS, PROJECTS WHERE SUPPLIER.CITY=PARTS.CITY AND PARTS.CITY=PROJECTS.CITY;
++-------+-------+----------+
+| SNAME | PNAME | JNAME    |
++-------+-------+----------+
+| Jones | Bolt  | Sorter   |
+| Blake | Bolt  | Sorter   |
+| Jones | Cam   | Sorter   |
+| Blake | Cam   | Sorter   |
+| Smith | Nut   | Collator |
+| Clark | Nut   | Collator |
+| Smith | Screw | Collator |
+| Clark | Screw | Collator |
+| Smith | Cog   | Collator |
+| Clark | Cog   | Collator |
+| Smith | Nut   | Tape     |
+| Clark | Nut   | Tape     |
+| Smith | Screw | Tape     |
+| Clark | Screw | Tape     |
+| Smith | Cog   | Tape     |
+| Clark | Cog   | Tape     |
++-------+-------+----------+
+
+
+6)
+D1_TARUNK_80767>SELECT PARTS.PNAME, SUM(SPJ.QTY) FROM PARTS, SPJ WHERE PARTS.`P#`=SPJ.`P#` AND PARTS.COLOR = 'RED' GROUP BY PARTS.PNAME;
++-------+--------------+
+| PNAME | SUM(SPJ.QTY) |
++-------+--------------+
+| Cog   |         1300 |
+| Nut   |         1000 |
+| Screw |         1300 |
++-------+--------------+
+3 rows in set (0.00 sec)
+
+
+7)
+D1_TARUNK_80767>SELECT STATUS, SUM(QTY) "QTY SOLD" FROM SPJ, SUPPLIER WHERE SPJ.`S#`=SUPPLIER.`S#` AND SUPPLIER.STATUS = 20;
++--------+----------+
+| STATUS | QTY SOLD |
++--------+----------+
+|     20 |     1500 |
++--------+----------+
+1 row in set (0.00 sec)
+
+
+8)
+D1_TARUNK_80767>SELECT PARTS.PNAME, SUM(SPJ.QTY) FROM PARTS, SPJ WHERE PARTS.`P#`=SPJ.`P#` AND WEIGHT>14 GROUP BY PNAME;
++-------+--------------+
+| PNAME | SUM(SPJ.QTY) |
++-------+--------------+
+| Bolt  |          300 |
+| Cog   |         1300 |
+| Screw |         3500 |
++-------+--------------+
+3 rows in set (0.00 sec)
+
+
+9)
+D1_TARUNK_80767>SELECT PROJECTS.JNAME, PROJECTS.CITY ,SPJ.QTY FROM SPJ, PROJECTS WHERE PROJECTS.`J#`=SPJ.`J#` AND QTY>500 ORDER BY 3,2;
++----------+--------+------+
+| JNAME    | CITY   | QTY  |
++----------+--------+------+
+| Collator | London |  600 |
+| Console  | Athens |  700 |
+| Console  | Athens |  800 |
+| Tape     | London |  800 |
++----------+--------+------+
+4 rows in set (0.00 sec)
+
+
+10)
+D1_TARUNK_80767>SELECT PARTS.PNAME, SUM(SPJ.QTY) FROM SPJ, PARTS WHERE SPJ.`P#`=PARTS.`P#` AND PARTS.WEIGHT<15 GROUP BY PARTS.PNAME;
++-------+--------------+
+| PNAME | SUM(SPJ.QTY) |
++-------+--------------+
+| Cam   |         1100 |
+| Nut   |         1000 |
+| Screw |         1300 |
++-------+--------------+
+3 rows in set (0.00 sec)
+
+
+
+***************************************************************** END OF SQL Exercise 5 ************************************************************
+
+
+
+
+

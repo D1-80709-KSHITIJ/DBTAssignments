@@ -1,0 +1,149 @@
+create table Authors( author_id int primary key, author_name char (25) not null);
+
+insert into Authors values(1,'APJ Kalam');
+insert into Authors values(2, Tagore');
+
+
+create table Books( author_id int, book_name char (25) not null, price float not null);
+
+insert into Books values (1,'Wings of Fire', 500);
+insert into Books values (2, 'Geetanjali', 1000);
+
+
+create table answer(a int, b char(25));
+
+delimiter //
+create trigger insertTrigger
+after insert 
+on Authors for each row
+begin
+	insert into answer values (new.author_id, new.author_name);
+end; //
+delimiter ;
+
+
+
+delimiter //
+create trigger deleteTrigger
+after delete 
+on Authors for each row
+begin
+	insert into answer values (old.author_id, old.author_name);
+end; //
+delimiter ;
+
+delete from Authors where author_id=3;
+
+-------------------------------------------
+delimiter //
+create trigger insertCapInit
+before insert 
+on Authors for each row
+begin
+	set new.author_name = upper(new.author_name);
+	insert into answer values (author_id, new.author_name);
+end; //
+delimiter ;
+
+insert into Authors values (10, 'Lalu');
+
+
+/* Delete Triggers */
+
+create table delLog(id int, name char(25), usname char(30), dt date);
+
+delimiter //
+create trigger delTrigger
+before delete 
+on Authors for each row
+begin
+	insert into delLog values (old.author_id, old.author_name, user(), sysdate());
+end; //
+delimiter ;
+
+delete from Authors where author_id <> IN(1,2); 
+
+
+-----------------------------------------------------
+
+create table empp(ename char(10), sal int, deptno int);
+insert into empp values ('A', 5000, 1);
+insert into empp values ('B', 5000, 1);
+insert into empp values ('C', 5000, 1);
+insert into empp values ('D', 3000, 2);
+insert into empp values ('E', 3000, 2);
+
+create table deptot(deptno int, saltot int);
+insert into deptot values (1, 15000);
+insert into deptot values (2, 6000);
+
+
+delimiter //
+create trigger upTrigger
+before update
+on empp for each row
+begin
+	update deptot set saltot=saltot-old.sal+new.sal 
+	where deptno=old.deptno;
+end; //
+delimiter ; 
+
+update empp 
+set sal=6000
+where ename = 'A';
+
+
+--------------------------------------------------------
+
+update empp
+set deptno=2
+where ename='A';
+
+
+delimiter //
+create trigger upTrig
+before update
+on empp for each row
+begin
+	if old.deptno <> new.deptno then 
+		update deptot set saltot = saltot - old.sal
+		where deptno = old.deptno;
+		update deptot set saltot = saltot + new.sal
+		where deptno = new.deptno;
+	end if;
+end; //
+delimiter;
+
+--------------------------------------------------------
+insert into Authors values (4,'Ravinath');
+
+delimiter //
+create trigger addAuthor
+before insert
+on Authors for each row
+begin 
+	insert into Books values (new.author_id, 'Book by Ravi' , 0);
+end; //
+delimiter ;
+
+-----------------------------------------------------------
+delete from Authors where author_id = 1;
+
+delimiter //
+create trigger delAuthor
+before delete 
+on Authors for each row
+begin
+	delete from Books
+	where author_id = old.author_id;
+end; //
+delimiter ;
+
+------------------------------------------------------------
+
+
+
+
+
+	
+
